@@ -58,6 +58,7 @@ const AuthProvider = ({ children }: Props) => {
             setUser({ ...response.data.userData })
           })
           .catch(() => {
+            window.localStorage.removeItem('bookedMeetingRooms')
             localStorage.removeItem('userData')
             localStorage.removeItem('refreshToken')
             localStorage.removeItem('accessToken')
@@ -104,6 +105,7 @@ const AuthProvider = ({ children }: Props) => {
     setUser(null)
     setIsInitialized(false)
     window.localStorage.removeItem('userData')
+    window.localStorage.removeItem('bookedMeetingRooms')
     window.localStorage.removeItem(authConfig.storageTokenKeyName)
     router.push('/login')
   }
